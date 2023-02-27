@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Close.hpp                                          :+:      :+:    :+:   */
+/*   Message.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: charleshajjar <charleshajjar@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 12:04:08 by charleshajj       #+#    #+#             */
-/*   Updated: 2023/02/27 15:07:06 by charleshajj      ###   ########.fr       */
+/*   Created: 2023/02/26 19:42:16 by charleshajj       #+#    #+#             */
+/*   Updated: 2023/02/27 15:08:06 by charleshajj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLOSE_H
-#define CLOSE_H
+#ifndef MESSAGE_H
+#define MESSAGE_H
 
 // Our includes
-#include "../Command.hpp"
+#include "./Color.hpp"
+#include "./functions.hpp"
 
-class Close : public Command
+#include <cstring>
+#include <iostream>
+#include <map>
+#include <string>
+
+class Message
 {
   public:
-	Close()
-	{
-		_name = "close";
-		_description = "terminate session";
-		_usage = "close";
-		_example[0] = "close";
-	}
+	std::string _buffer;
 
-	void execute()
-	{
-	}
+  private:
+	std::string                   _cmd;
+	std::map<size_t, std::string> _params;
+
+  public:
+	Message(std::string &buffer);
+	std::string                   getCmd(void) const;
+	std::map<size_t, std::string> getParams(void) const;
 };
+
 #endif

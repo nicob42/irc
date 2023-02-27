@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Close.hpp                                          :+:      :+:    :+:   */
+/*   functions.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: charleshajjar <charleshajjar@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 12:04:08 by charleshajj       #+#    #+#             */
-/*   Updated: 2023/02/27 15:07:06 by charleshajj      ###   ########.fr       */
+/*   Created: 2023/02/26 19:43:00 by charleshajj       #+#    #+#             */
+/*   Updated: 2023/02/27 15:08:07 by charleshajj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLOSE_H
-#define CLOSE_H
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
-// Our includes
-#include "../Command.hpp"
+#include <string>
+#include <vector>
 
-class Close : public Command
-{
-  public:
-	Close()
-	{
-		_name = "close";
-		_description = "terminate session";
-		_usage = "close";
-		_example[0] = "close";
-	}
+std::string              itoa(int a);
+std::vector<std::string> split(const std::string &str, const std::string &delimiters);
+std::string              to_lower(std::string str);
 
-	void execute()
-	{
-	}
-};
 #endif

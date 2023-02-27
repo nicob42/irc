@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Close.hpp                                          :+:      :+:    :+:   */
+/*   Color.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: charleshajjar <charleshajjar@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 12:04:08 by charleshajj       #+#    #+#             */
-/*   Updated: 2023/02/27 15:07:06 by charleshajj      ###   ########.fr       */
+/*   Created: 2023/02/26 19:41:18 by charleshajj       #+#    #+#             */
+/*   Updated: 2023/02/27 15:08:12 by charleshajj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLOSE_H
-#define CLOSE_H
+#ifndef COLOR_H
+#define COLOR_H
 
-// Our includes
-#include "../Command.hpp"
+#define C_X "\033[0m"
+#define C_YELLOW "\033[33m"
+#define C_RED "\033[31;1m"
+#define C_GREEN "\033[32;1m"
+#define C_CYAN "\033[36;1m"
+#define C_WHITE "\033[37;1m"
+#define C_BLUE "\033[34;1m"
+#define C_UP "\033[A"
+#define C_CUT "\033[K"
+#define C_U "\033[4m"
+#define C_BLINK "\033[5m"
+#define C_BOLD "\033[1m"
 
-class Close : public Command
-{
-  public:
-	Close()
-	{
-		_name = "close";
-		_description = "terminate session";
-		_usage = "close";
-		_example[0] = "close";
-	}
-
-	void execute()
-	{
-	}
-};
 #endif
