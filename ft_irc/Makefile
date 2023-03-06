@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: charleshajjar <charleshajjar@student.42    +#+  +:+       +#+         #
+#    By: chajjar <chajjar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 12:00:02 by charleshajj       #+#    #+#              #
-#    Updated: 2023/02/21 12:00:03 by charleshajj      ###   ########.fr        #
+#    Updated: 2023/03/07 00:21:59 by chajjar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
