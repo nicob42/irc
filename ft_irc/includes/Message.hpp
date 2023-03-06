@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: charleshajjar <charleshajjar@student.42    +#+  +:+       +#+        */
+/*   By: chajjar <chajjar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:42:16 by charleshajj       #+#    #+#             */
-/*   Updated: 2023/02/27 15:08:06 by charleshajj      ###   ########.fr       */
+/*   Updated: 2023/03/07 00:18:06 by chajjar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: charleshajjar <charleshajjar@student.42    +#+  +:+       +#+        */
+/*   By: chajjar <chajjar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:03:13 by charleshajj       #+#    #+#             */
-/*   Updated: 2023/02/27 15:08:44 by charleshajj      ###   ########.fr       */
+/*   Updated: 2023/03/07 00:17:49 by chajjar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
