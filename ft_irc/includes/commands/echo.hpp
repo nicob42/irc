@@ -1,38 +1,35 @@
 #ifndef ECHO_H
 #define ECHO_H
 
+// Our includes
 #include "../Command.hpp"
 
-class Echo : public Command // Classe Echo hérite de la classe Command
+class Echo : public Command
 {
   public:
-  // Constructeur
-    Echo()
-    {
-        name = "echo"; // Nom de la commande
-        description = "Return the string sent"; // Description de la commande
-        usage = "echo <string?>"; // Usage de la commande
-        example[0] = "echo"; // Exemple d'utilisation de la commande
-        example[1] = "echo hello";
-        example[3] = "echo hello world";
-    }
+	Echo()
+	{
+		_name = "echo";
+		_description = "Print a set of strings";
+		_usage = "echo <string?>";
+		_example[0] = "echo";
+		_example[1] = "echo hello";
+		_example[3] = "echo hello world";
+	}
 
-    // Méthode qui exécute la commande
-    void execute()
-    {
-        std::map<size_t, std::string> p = message->getParams(); // On récupère les paramètres de la commande
-        std::string                   result = ""; // On initialise une variable qui contiendra le résultat de la commande
+	void execute()
+	{
+		std::map<size_t, std::string> p = _message->getParams();
+		std::string                   res = "";
 
-        // On parcourt les paramètres et on les concatène dans la variable result
-        for (std::map<size_t, std::string>::iterator it = p.begin(); it != p.end(); ++it)
-            result += std::string(it->second + " ");
+		for (std::map<size_t, std::string>::iterator it = p.begin(); it != p.end(); ++it)
+			res += std::string(it->second + " ");
 
-        // On envoie le résultat à tous les clients connectés, sauf l'expéditeur de la commande
-        for (size_t i = 0; i < server->clients.size(); i++)
-        {
-            if (server->clients[i] != sender)
-                server->clients[i]->message(std::string(result + "\n").c_str());
-        }
-    }
+		for (size_t i = 0; i < _server->_clients.size(); i++)
+		{
+			if (_server->_clients[i] != _sender)
+				_server->_clients[i]->message(std::string(res + "\n").c_str());
+		}
+	}
 };
 #endif
