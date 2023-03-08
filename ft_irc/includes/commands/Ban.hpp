@@ -1,58 +1,63 @@
 #ifndef BAN_H
 #define BAN_H
 
+// Our includes
 #include "../Command.hpp"
 
-class Ban : public Command // Classe Ban hérite de la classe Command
+class Ban : public Command
 {
   public:
-  // Constructeur
-    Ban()
-    {
-        name = "ban"; // Définition du nom de la commande
-        description = "Ban a naughty people"; // Définition de la description de la commande
-        usage = "ban <client_nickname>"; // Définition de l'utilisation de la commande
-        example[0] = "ban Faerris"; // Définition d'un exemple d'utilisation de la commande
-        ope_required = true; // Définition du statut de l'opérateur nécessaire pour utiliser la commande
-    }
+	Ban()
+	{
+		_name = "ban";
+		_description = "Just ban a client";
+		_usage = "ban <client_nickname>";
+		_example[0] = "ban alfred";
+		_is_ope = true;
+	}
 
-    bool validate(void) // Fonction de validation de la commande
-    {
-        std::map<size_t, std::string> p = message->getParams(); // Récupération des paramètres de la commande
+	bool validate(void)
+	{
+		std::map<size_t, std::string> p = _message->getParams();
 
-        if (p.size() == 0 || p.size() > 2) // Vérification du nombre de paramètres
-        {
-            sender->message("Wrong usage, use it this way : ban <client_nickname>")
-                             "<client_nickname>\n"); // Envoi d'un message d'erreur au client
-            return (false); // Retourne faux si les paramètres sont invalides
-        }
-        else if (p[0] == sender->nick) // Vérification que le client ne se bannit pas lui-même
-        {
-            sender->message(std::string("Don't be stupid, don't hurt yourself\n").c_str()); // Envoi d'un message d'erreur au client
-            return (false); // Retourne faux si le client essaie de se bannir lui-même
-        }
-        else if (!server->getClient(p[0])) // Vérification de l'existence du client à bannir
-        {
-            sender->message("Client not found!\n"); // Envoi d'un message d'erreur au client
-            return (false); // Retourne faux si le client à bannir n'existe pas
-        }
-        return (true); // Retourne vrai si la validation a réussi
-    }
+		if (p.size() == 0 || p.size() > 2)
+		{
+			_sender->message("Please send valid params! Ex: ban "
+			                 "<client_nickname>\n");
+			return (false);
+		}
+		else if (p[0] == _sender->_nick)
+		{
+			_sender->message(std::string("You cant ban yourself\n").c_str());
+			return (false);
+		}
+		else if (!_server->getClient(p[0]))
+		{
+			_sender->message("Client not found!\n");
+			return (false);
+		}
+		return (true);
+	}
 
-    void execute() // Fonction d'exécution de la commande
-    {
-        std::string name = message->getParams()[0]; // Récupération du nom du client à bannir
-        Client *    client = server->getClient(name); // Récupération du client à bannir
-        size_t      client_index = server->getClientIndex(name); // Récupération de l'index du client à bannir
+	void execute()
+	{
+		std::string name = _message->getParams()[0];
+		Client *    client = _server->getClient(name);
+		size_t      client_index = _server->getClientIndex(name);
 
-        client->message(
-            std::string("You've been banned by " + sender->nick + "\n").c_str()); // Envoi d'un message au client banni
-        sender->message(
-            std::string("Client " + client->nick + " has been banned!\n").c_str()); // Envoi d'un message au client ayant exécuté la commande
+		client->message(
+		    std::string("You've been banned by " + _sender->_nick + "\n").c_str());
+		_sender->message(
+		    std::string("Client " + client->_nick + " has been banned!\n").c_str());
 
-        delete client; // Suppression du client banni
-        server->_clients.erase(server->_clients.begin() + client_index); // Suppression du client banni de la liste de clients
-        server->_pfds.erase(server->_pfds.begin() + client_index + 1); // Suppression du client banni du tableau de des
-    }
+		// First we delete the client pointer, this will execute the client
+		// destructor which will close the socket. delete _clients[];
+		delete client;
+		// Then we remove the client from the clients map containers.
+		_server->_clients.erase(_server->_clients.begin() + client_index);
+		// Then we remove the client from the clients _pfds.
+		_server->_pfds.erase(_server->_pfds.begin() + client_index + 1);
+	}
 };
 #endif
+
