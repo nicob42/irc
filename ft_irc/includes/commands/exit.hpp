@@ -1,29 +1,29 @@
 #ifndef EXIT_H
 #define EXIT_H
 
+// Our includes
 #include "../Command.hpp"
 
-class Exit : public Command // Classe Exit hérite de la classe Command
+class Exit : public Command
 {
   public:
-  // Constructeur
-    Exit()
-    {
-        // On définit les informations concernant la commande
-        name = "exit";
-        description = "Disconnect from the IRC server";
-        usage = "exit";
-        example[0] = "exit";
-    }
+	Exit()
+	{
+		_name = "exit";
+		_description = "Disconnect from the IRC server";
+		_usage = "exit";
+		_example[0] = "exit";
+	}
 
-    void execute()
-    {
-        // On supprime le client qui a envoyé la commande de la liste des clients
-        delete server->clients[sender_index];
-        server->clients.erase(server->clients.begin() + sender_index);
-
-        // On supprime le descripteur de fichier associé au client de la liste des descripteurs de fichiers
-        server->fd.erase(server->fd.begin() + sender_index + 1);
-    }
+	void execute()
+	{
+		// First we delete the client pointer, this will execute the client
+		// destructor which will close the socket. delete _clients[];
+		delete _server->_clients[_sender_index];
+		// Then we remove the client from the clients map containers.
+		_server->_clients.erase(_server->_clients.begin() + _sender_index);
+		// Then we remove the client from the clients _pfds.
+		_server->_pfds.erase(_server->_pfds.begin() + _sender_index + 1);
+	}
 };
 #endif
