@@ -1,25 +1,23 @@
 #ifndef NICK_H
 #define NICK_H
 
+// Our includes
 #include "../Command.hpp"
 
-class Nick : public Command // Classe Nick hérite de la classe Command
+class Nick : public Command
 {
   public:
-    // Constructeur de la classe Nick
-    Nick()
-    {
-        // Initialisation des attributs de la commande
-        name = "Nick";
-        description = "adssa";
-        usage = "Nick";
-        example = "Nick";
-    }
+	Nick()
+	{
+		_name = "Nick";
+		_description = "adssa";
+		_usage = "Nick";
+		_example = "Nick";
+	}
 
-    // Méthode exécutée lorsque la commande est appelée
-    void execute(std::string name)
-    {
-        sender->name = name;
-    }
+	void execute(std::string name)
+	{
+		_sender->name = name;
+	}
 };
 #endif
