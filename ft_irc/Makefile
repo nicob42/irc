@@ -6,7 +6,7 @@
 #    By: chajjar <chajjar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 12:00:02 by charleshajj       #+#    #+#              #
-#    Updated: 2023/03/07 00:21:59 by chajjar          ###   ########.fr        #
+#    Updated: 2023/03/08 22:38:16 by chajjar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ COLUMNS				=	$(shell stty size | cut -d" " -f2)
 
 # Mandatory part
 
-UTILS				=	utils/validation.cpp utils/functions.cpp
+UTILS				=	utils/validation.cpp utils/fonctions.cpp
 
 SRCS				=	server.cpp client.cpp message.cpp
 
@@ -73,7 +73,7 @@ Y					=	$(shell printf "\033[33m")
 R					=	$(shell printf "\033[31m")
 G					=	$(shell printf "\033[32m")
 CYAN				=	$(shell printf "\033[36m")
-B					=	$(shell printf "\033[34m")
+B					=	$(shell printf "\033[40m")
 X					=	$(shell printf "\033[0m")
 UP					=	$(shell printf "\033[A")
 CUT					=	$(shell printf "\033[K")
@@ -101,10 +101,10 @@ $(OBJ_DIR):
 $(OUTPUT): $(OBJ_DIR) $(OBJS)
 			@echo
 			$(CC) $(OBJS) -I $(HEADER_DIR) -I tests $(FLAGS) -o $(OUTPUT)
-			@echo ${B}[-------------------------------------]${X}
-			@echo ${B}[---------- ${BOLD}OK${X}${B} - ${BOLD}$(OUTPUT)${X}${B} ----------]${X}
-			@echo ${B}[------- 🧟 Let ft_irc 🧟 --------]${X}
-			@echo ${B}[-------------------------------------]${X}
+			@echo ${B}[--------------------------------------------------]${X}
+			@echo ${B}[---------------- ${BOLD}Done${X}${B} - ${BOLD}$(OUTPUT)${X}${B} -----------------]${X}
+			@echo ${B}[-------////////Team_consultant.sh/////////--------]${X}
+			@echo ${B}[--------------------------------------------------]${X}
 
 $(OBJ_DIR)%.o: %.cpp $(DEPS)
 			$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
@@ -124,7 +124,7 @@ fclean:		## Remove all objects and executables.
 			$(RM) $(OUTPUT)
 			$(RM) $(OBJ_DIR)
 			$(RM) $(OUTPUT)
-			@echo ${CUT}[${Y}$(OUTPUT)]${X} [Garbage collector:${Y} ${OUTPUT} $(OUTPUT) *.o${X}][${G}OK!${X}]
+			@echo ${CUT}[${Y}$(OUTPUT)]${X} [Elements:${Y} ${OUTPUT} $(OUTPUT) *.o${X}][${G}OK!${X}]
 
 ##@ Compilation
 
@@ -147,7 +147,7 @@ rmcov:		## Clean coverage files
 ##@ Help
 help:		## View all available commands.
 			$(shell $(TARGETS_EXE))
-			@echo ${CYAN} Proyecto: ${UND}${BOLD}$(OUTPUT)${CYAN}${X}${CYAN}${UND}\\t\\t\\t\\t\\tAuthor: $(AUTHOR)${X}
+			@echo ${CYAN} Project: ${UND}${BOLD}$(OUTPUT)${CYAN}${X}${CYAN}${UND}\\t\\t\\t\\t\\tAuthor: $(AUTHOR)${X}
 			@echo ${CYAN} Last commit:${X}
 			@echo ${CYAN} \\tDate: $(LAST_COMMIT_DATE)
 			@echo ${CYAN} \\tHash: $(LAST_COMMIT_HASH)${X}
