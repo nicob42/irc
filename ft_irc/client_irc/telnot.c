@@ -83,7 +83,7 @@ int main(int argument_count, char *arguments[])
 	printf("Connecté à %s port %s\n", address_string, port);
 	printf("Hit ^C to exit\n");
 
-	freeaddrinfo(host_info); // Terminé avec cette structure
+	freeaddrinfo(server_info); // Terminé avec cette structure
 
     // Surveille l'entrée standard et le descripteur de socket pour les données entrantes (prêtes à lire)
     struct pollfd file_descriptors[2];
@@ -107,7 +107,7 @@ int main(int argument_count, char *arguments[])
 		    if (file_descriptors[i].revents & POLLIN) {
 
 			    int bytes_read, bytes_written;
-			    char buffer[BUFSIZE];
+			    char buffer[BUFFER_SIZE];
 
 			    // Calcule où écrire les données. Si nous sommes à l'entrée standard (0),
 			    // nous écrirons sur le descripteur de socket. Si nous sommes sur le descripteur de socket, nous écrirons sur la sortie standard (1).
@@ -116,7 +116,7 @@ int main(int argument_count, char *arguments[])
 			    // Nous utilisons read() et write() ici car cela fonctionne sur
 			    // tous les descripteurs de fichiers, pas seulement les sockets. send() et recv() échoueraient
 			    // sur l'entrée standard et la sortie standard car ce ne sont pas des sockets.
-			    if ((bytes_read = read(file_descriptors[i].fd, buffer, BUFSIZE)) == -1) {
+			    if ((bytes_read = read(file_descriptors[i].fd, buffer, BUFFER_SIZE)) == -1) {
 				    perror("read");
 				    exit(2);
 			    }
@@ -138,7 +138,6 @@ int main(int argument_count, char *arguments[])
 	    }
     }
 
-    // Non atteint -- utilisez ^C pour sortir.
 
     return 0;
 }
